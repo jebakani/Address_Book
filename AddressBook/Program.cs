@@ -6,6 +6,9 @@ namespace AddressBook
     {
         /// <summary>
         /// Welcome to Address Book Management System
+        /// UC1 - Gets the contact detail
+        /// UC2- Get and stores multiple contacts
+        /// UC3- Edit the contacts
         /// </summary>
         /// <param name="args">The arguments.</param>
         static void Main(string[] args)

@@ -43,5 +43,11 @@ namespace AddressBook
 
         }
 
+        //method sets the value 
+        public void SetDetail(long number)
+        {
+            this.phoneNumber = number;
+        }
+
     }
 }
