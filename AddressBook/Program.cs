@@ -11,6 +11,8 @@ namespace AddressBook
         static void Main(string[] args)
         {
             Console.WriteLine("Welcome to Address book");
+            //calling operation management class that contains operation
+            OperationManagement.AddDetails();
             Console.Read();
         }
     }
