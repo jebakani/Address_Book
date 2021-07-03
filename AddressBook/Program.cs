@@ -12,7 +12,7 @@ namespace AddressBook
         {
             Console.WriteLine("Welcome to Address book");
             //calling operation management class that contains operation
-            OperationManagement.AddDetails();
+            OperationManagement.ReadInput();
             Console.Read();
         }
     }
