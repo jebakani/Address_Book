@@ -43,6 +43,7 @@ namespace AddressBook
                 Console.WriteLine("6.Delete the address book");
                 Console.WriteLine("7.Display the person by city or state");
                 Console.WriteLine("8.Grouping the persons based on city or state");
+                Console.WriteLine("9.Total count of person in each city and state");
                 Console.WriteLine("0.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
 
@@ -137,6 +138,11 @@ namespace AddressBook
                         AddressBookCompute.PrintList(cityDic);
                         Console.WriteLine("Grouping based on States ");
                         AddressBookCompute.PrintList(stateDic);
+                        break;
+                    //to find the count of the person in particular city or state
+                    case 9:
+                        AddressBookCompute.CountOfPersons(cityDic);
+                        AddressBookCompute.CountOfPersons(stateDic);
                         break;
 
                     case 0:
