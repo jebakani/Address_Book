@@ -179,7 +179,7 @@ namespace AddressBook
             Console.WriteLine("=====================================");
             Console.WriteLine("\nDisplaying the list based on state");
             //display the sorted value based on city
-            foreach (var i in list.OrderBy(detail => detail.state))
+            foreach (var i in list.OrderBy(detail => detail.state)) 
             {
                 i.Display();
             }
