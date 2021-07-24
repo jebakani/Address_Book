@@ -126,6 +126,7 @@ namespace AddressBook
             }
            
         }
+        //method to display the data in particular list
         public static void DisplayList(List<ContactDetails> l)
         {
             foreach(var data in l)
@@ -134,6 +135,7 @@ namespace AddressBook
             }
         }
 
+        //method to print the data in particular dictionary
         public static void PrintList(Dictionary<string, List<ContactDetails>> Dic)
         {
             foreach(var l in Dic)
@@ -147,12 +149,48 @@ namespace AddressBook
             }
         }
 
+        //method to find the number of item in th particular address book
         public static void CountOfPersons(Dictionary<string, List<ContactDetails>> Dic)
         {
             foreach (var l in Dic)
             {
                 Console.WriteLine("Total number of person in {0} is: {1}",l.Key,l.Value.Count);
             }
+        }
+        //method to sort data in the list based on zipcode
+        public static void SortData(Dictionary<string, List<ContactDetails>> Dic)
+        {
+            //store the result inthe list and display the result
+            List<ContactDetails> list = new List<ContactDetails>();
+            foreach (var d in Dic)
+            {
+                foreach (var i in d.Value)
+                {
+                    list.Add(i);
+                }
+            }
+            Console.WriteLine("=====================================");
+            Console.WriteLine("\nDisplaying the list based on zipcode");
+            //display the sorted value based on city
+            foreach (var i in list.OrderBy(detail => detail.zipCode))
+            {
+                i.Display();
+            }
+            Console.WriteLine("=====================================");
+            Console.WriteLine("\nDisplaying the list based on state");
+            //display the sorted value based on city
+            foreach (var i in list.OrderBy(detail => detail.state))
+            {
+                i.Display();
+            }
+            Console.WriteLine("=====================================");
+            Console.WriteLine("\nDisplaying the list based on city");
+            //display the sorted value based on city
+            foreach (var i in list.OrderBy(detail => detail.city))
+            {
+                i.Display();
+            }
+
         }
     }
 }
