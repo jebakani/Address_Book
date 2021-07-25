@@ -25,6 +25,8 @@ namespace AddressBook
         public void ReadInput()
         {
             OperationManagement operation = new OperationManagement();
+            FileOperation file = new FileOperation();
+            addressDictionary = file.ReadFromJsonFile();
             //creating the object for the class address book 
             bool CONTINUE = true;
             string name;
@@ -57,9 +59,11 @@ namespace AddressBook
                         //creating the dictionary
                         Console.WriteLine("Enter address book name:");
                         string addBookName = Console.ReadLine();
+                        List<ContactDetails> list = new List<ContactDetails>();
                         //create the object for the address book
                         //pass address book object and name to the dictionary
-                        addressDictionary.Add(addBookName, new List<ContactDetails>());
+                        addressDictionary.Add(addBookName, list);
+                        file.WriteIntoJsonFile(addressDictionary);
                         break;
 
 
@@ -73,6 +77,7 @@ namespace AddressBook
                         {
                             Console.WriteLine(e.Message);
                         }
+                        file.WriteIntoJsonFile(addressDictionary);
                         break;
 
                     case 3:
@@ -108,6 +113,7 @@ namespace AddressBook
                         {
                             Console.WriteLine("Enter valid input");
                         }
+                        file.WriteIntoJsonFile(addressDictionary);
                         break;
 
                     case 5:
@@ -123,6 +129,7 @@ namespace AddressBook
                         {
                             Console.WriteLine("Address book is not available");
                         }
+                        file.WriteIntoJsonFile(addressDictionary);
                         break;
 
                     case 6:
@@ -130,6 +137,7 @@ namespace AddressBook
                         Console.WriteLine("Enter address book name to delete:");
                         string Name = Console.ReadLine();
                         addressDictionary.Remove(Name);
+                        file.WriteIntoJsonFile(addressDictionary);
                         break;
                     case 7:
                         AddressBookCompute.FindPerson(addressDictionary);
@@ -167,7 +175,7 @@ namespace AddressBook
                         break;
                     case 12:
                         //writing and reading  the data into the file
-                        FileOperation file = new FileOperation();
+                        
                         file.WriteIntoFile(addressDictionary);
                         break;
 

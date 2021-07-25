@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace AddressBook
     class FileOperation
     {
         string filepath = @"C:\Users\HP1\source\repos\AddressBook\AddressBook\AddressBook.txt";
+        string jsonFile = @"C:\Users\HP1\source\repos\AddressBook\AddressBook\ContactDetails.json";
 
         //method to write the data into the file
         public void WriteIntoFile(Dictionary<string, List<ContactDetails>> addressDictionary)
@@ -53,6 +55,17 @@ namespace AddressBook
             {
                 Console.WriteLine("File not exist");
             }
+        }
+
+        public Dictionary<string, List<ContactDetails>> ReadFromJsonFile()
+        {
+            Dictionary<string,List<ContactDetails>> details= JsonConvert.DeserializeObject<Dictionary<string,List<ContactDetails>>>(File.ReadAllText(jsonFile));
+            return details;
+        }
+
+        public void WriteIntoJsonFile(Dictionary<string, List<ContactDetails>> contactList)
+        {
+            File.WriteAllText(jsonFile, JsonConvert.SerializeObject(contactList));
         }
     }
 }

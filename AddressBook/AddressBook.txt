@@ -1,7 +1,2 @@
-AddressBook Name:TVS
-Name:raj kumar Address:kknagar City:chennai State:tamil nadu Zipcode:6000083 Ph.No:8892387232
-
-AddressBook Name:CTS
-Name:Ram charan Address:anna nagar City:madurai State:tamil nadu Zipcode:827390 Ph.No:39293897498
-Name:abc xyz Address:kkk City:chennai State:tamil nadu Zipcode:892389 Ph.No:293780273
+AddressBook Name:jeba
 
