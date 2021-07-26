@@ -11,13 +11,13 @@ namespace AddressBook
     /// </summary>
     public class ContactDetails
     {
-        public string firstName;
-        public string lastName;
-        public string address;
-        public string city;
-        public string state;
-        public long zipCode;
-        public long phoneNumber;
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+        public string address { get; set; }
+        public string city { get; set; }
+        public string state { get; set; }
+        public long zipCode { get; set; }
+        public long phoneNumber { get; set; }
 
         //constructor that gets user detail and store it in the current object
         public ContactDetails(string firstName,string lastName,string address,string city,string state,long zipCode,long phoneNumber)

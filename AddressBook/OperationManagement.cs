@@ -76,7 +76,7 @@ namespace AddressBook
                         catch(ArgumentNullException e)
                         {
                             Console.WriteLine(e.Message);
-                        }at
+                        }
                         file.WriteIntoJsonFile(addressDictionary);
                         break;
 

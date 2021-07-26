@@ -1,8 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using CsvHelper;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,6 +15,7 @@ namespace AddressBook
     {
         string filepath = @"C:\Users\HP1\source\repos\AddressBook\AddressBook\AddressBook.txt";
         string jsonFile = @"C:\Users\HP1\source\repos\AddressBook\AddressBook\ContactDetails.json";
+        string csvFile = @"C:\Users\HP1\source\repos\AddressBook\AddressBook\ContactDetai.csv";
 
         //method to write the data into the file
         public void WriteIntoFile(Dictionary<string, List<ContactDetails>> addressDictionary)
@@ -66,6 +70,27 @@ namespace AddressBook
         public void WriteIntoJsonFile(Dictionary<string, List<ContactDetails>> contactList)
         {
             File.WriteAllText(jsonFile, JsonConvert.SerializeObject(contactList));
+            WriteIntoCSVFile(contactList);
+        }
+
+        public void WriteIntoCSVFile(Dictionary<string, List<ContactDetails>> contactList)
+        {
+            
+            using (StreamWriter writer = new StreamWriter(csvFile))
+            {
+                using (var csvWriter=new CsvWriter(writer,CultureInfo.InvariantCulture))
+                {
+                    csvWriter.WriteHeader<ContactDetails>();
+                    csvWriter.NextRecord();
+                    foreach (var l in contactList)
+                    {
+                        
+                        csvWriter.WriteRecords(l.Value);
+                      
+                    }
+
+                }
+            }
         }
     }
 }
