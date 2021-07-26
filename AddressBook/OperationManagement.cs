@@ -26,7 +26,7 @@ namespace AddressBook
         {
             OperationManagement operation = new OperationManagement();
             FileOperation file = new FileOperation();
-            addressDictionary = file.ReadFromJsonFile();
+           // addressDictionary = file.ReadFromJsonFile();
             //creating the object for the class address book 
             bool CONTINUE = true;
             string name;
@@ -37,18 +37,20 @@ namespace AddressBook
             {
                 //selecting the choice
                 Console.WriteLine("Enter your choice:");
-                Console.WriteLine("1.Add new address book");
-                Console.WriteLine("2.Add contacts");
-                Console.WriteLine("3.Display");
-                Console.WriteLine("4.Edit Details");
-                Console.WriteLine("5.Delete the contact");
-                Console.WriteLine("6.Delete the address book");
-                Console.WriteLine("7.Display the person by city or state");
-                Console.WriteLine("8.Grouping the persons based on city or state");
-                Console.WriteLine("9.Total count of person in each city and state");
-                Console.WriteLine("10.Sort the address book by key");
-                Console.WriteLine("11.Sorting data based on City state or zipcode");
-                Console.WriteLine("12.REading and writing the data into the file");
+                Console.WriteLine("1.Reading the data from JSON");
+                Console.WriteLine("2.Reading from CSV file");
+                Console.WriteLine("3.Add new address book");
+                Console.WriteLine("4.Add contacts");
+                Console.WriteLine("5.Display");
+                Console.WriteLine("6.Edit Details");
+                Console.WriteLine("7.Delete the contact");
+                Console.WriteLine("8.Delete the address book");
+                Console.WriteLine("9.Display the person by city or state");
+                Console.WriteLine("10.Grouping the persons based on city or state");
+                Console.WriteLine("11.Total count of person in each city and state");
+                Console.WriteLine("12.Sort the address book by key");
+                Console.WriteLine("13.Sorting data based on City state or zipcode");
+                Console.WriteLine("14.REading and writing the data into the file");
                 Console.WriteLine("0.Exit");
                 int choice = Convert.ToInt32(Console.ReadLine());
 
@@ -56,6 +58,12 @@ namespace AddressBook
                 switch (choice)
                 {
                     case 1:
+                        addressDictionary = file.ReadFromJsonFile();
+                        break;
+                    case 2:
+                        addressDictionary = file.ReadFromCSVFile();
+                        break;
+                    case 3:
                         //creating the dictionary
                         Console.WriteLine("Enter address book name:");
                         string addBookName = Console.ReadLine();
@@ -67,7 +75,7 @@ namespace AddressBook
                         break;
 
 
-                    case 2:
+                    case 4:
                         try
                         {
                             //calling the AddDetails method by passing the address of the Address book compute
@@ -80,7 +88,7 @@ namespace AddressBook
                         file.WriteIntoJsonFile(addressDictionary);
                         break;
 
-                    case 3:
+                    case 5:
                         //display the details in particular dictionary
                         contactList = operation.BookName(addressDictionary);
                         if (contactList != null)
@@ -93,7 +101,7 @@ namespace AddressBook
                         }
                         break;
 
-                    case 4:
+                    case 6:
                         try
                         {
                             contactList = operation.BookName(addressDictionary);
@@ -101,7 +109,7 @@ namespace AddressBook
                             Console.WriteLine("Enter the first name of person to edit number:");
                             name = Console.ReadLine();
                             Console.Write("Enter the new number:");
-                            long number = Convert.ToInt64(Console.ReadLine());
+                            string number = Console.ReadLine();
                             //calling edit contact method
                             addressBook.EditContact(name, number,contactList);
                         }
@@ -116,7 +124,7 @@ namespace AddressBook
                         file.WriteIntoJsonFile(addressDictionary);
                         break;
 
-                    case 5:
+                    case 7:
                         try
                         {
                             contactList = operation.BookName(addressDictionary);
@@ -132,18 +140,18 @@ namespace AddressBook
                         file.WriteIntoJsonFile(addressDictionary);
                         break;
 
-                    case 6:
+                    case 8:
                         //deleting the entire adress book
                         Console.WriteLine("Enter address book name to delete:");
                         string Name = Console.ReadLine();
                         addressDictionary.Remove(Name);
                         file.WriteIntoJsonFile(addressDictionary);
                         break;
-                    case 7:
+                    case 9:
                         AddressBookCompute.FindPerson(addressDictionary);
                         break;
                     //case to group the persons in all address book based on state and city
-                    case 8:
+                    case 10:
                         Console.WriteLine("Grouping based on city ");
                         foreach (var l in cityDic.Values)
                         {
@@ -156,12 +164,12 @@ namespace AddressBook
                         }
                         break;
                     //to find the count of the person in particular city or state
-                    case 9:
+                    case 11:
                         AddressBookCompute.CountOfPersons(cityDic);
                         AddressBookCompute.CountOfPersons(stateDic);
                         break;
 
-                    case 10:
+                    case 12:
                         //displaying the sorted address book based on the key value ie.name of address book
                         Console.WriteLine("AddressBook after sorting");
                         foreach(var i in addressDictionary.OrderBy(x=>x.Key))
@@ -169,11 +177,11 @@ namespace AddressBook
                             Console.WriteLine("{0}",i.Key);
                         }
                         break;
-                    case 11:
+                    case 13:
                         //displaying the sorted records based on city,state,zipcode
                         AddressBookCompute.SortData(cityDic);
                         break;
-                    case 12:
+                    case 14:
                         //writing and reading  the data into the file
                         
                         file.WriteIntoFile(addressDictionary);
@@ -211,9 +219,9 @@ namespace AddressBook
                     Console.WriteLine("Enter State");
                     string state = Console.ReadLine();
                     Console.WriteLine("Enter Zipcode");
-                    long zipCode = Convert.ToInt64(Console.ReadLine());
+                    string zipCode = Console.ReadLine();
                     Console.WriteLine("Enter Phone Number");
-                    long phoneNumber = Convert.ToInt64(Console.ReadLine());
+                    string phoneNumber = Console.ReadLine();
                     //passing the details to add contact detail method
                     addressBook.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber, stateRecord, cityRecord,list);
                 }

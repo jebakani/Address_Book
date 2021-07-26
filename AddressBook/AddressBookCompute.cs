@@ -13,7 +13,7 @@ namespace AddressBook
         private List<ContactDetails> cityList;
         bool AVAILABLE = false;
         //this method add details to the address book
-        public  void AddContactDetails(string firstName, string lastName, string address, string city, string state, long zipCode, long phoneNumber,Dictionary<string,List<ContactDetails>>stateDic,Dictionary<string,List<ContactDetails>> cityDic,List<ContactDetails> contactList)
+        public  void AddContactDetails(string firstName, string lastName, string address, string city, string state, string zipCode, string phoneNumber,Dictionary<string,List<ContactDetails>>stateDic,Dictionary<string,List<ContactDetails>> cityDic,List<ContactDetails> contactList)
         {
             //find the data that already has the same value 
             ContactDetails details = contactList.Find(x => x.firstName.Equals(firstName));
@@ -52,9 +52,7 @@ namespace AddressBook
             else
             {
                 Console.WriteLine("record with same name as {0} is available in the address book", firstName);
-            }
-            
-            
+            }          
         }
 
         //calls the display method
@@ -78,7 +76,7 @@ namespace AddressBook
             }
         }
 
-        public void EditContact(string name,long number, List<ContactDetails> contactList)
+        public void EditContact(string name,string number, List<ContactDetails> contactList)
         {
             AVAILABLE = false;
             //checks for every object whether the name is equal the given name

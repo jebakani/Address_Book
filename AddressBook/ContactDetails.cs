@@ -16,11 +16,11 @@ namespace AddressBook
         public string address { get; set; }
         public string city { get; set; }
         public string state { get; set; }
-        public long zipCode { get; set; }
-        public long phoneNumber { get; set; }
+        public string zipCode { get; set; }
+        public string phoneNumber { get; set; }
 
         //constructor that gets user detail and store it in the current object
-        public ContactDetails(string firstName,string lastName,string address,string city,string state,long zipCode,long phoneNumber)
+        public ContactDetails(string firstName,string lastName,string address,string city,string state, string zipCode,string phoneNumber)
         {
             this.firstName = firstName;
             this.lastName = lastName;
@@ -44,7 +44,7 @@ namespace AddressBook
         }
 
         //method sets the value 
-        public void SetDetail(long number)
+        public void SetDetail(string number)
         {
             this.phoneNumber = number;
         }
