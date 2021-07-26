@@ -26,7 +26,6 @@ namespace AddressBook
         {
             OperationManagement operation = new OperationManagement();
             FileOperation file = new FileOperation();
-           // addressDictionary = file.ReadFromJsonFile();
             //creating the object for the class address book 
             bool CONTINUE = true;
             string name;
