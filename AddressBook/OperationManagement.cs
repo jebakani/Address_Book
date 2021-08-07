@@ -279,5 +279,11 @@ namespace AddressBook
             List<ContactDetails> detail = operation.RetriveBasedOnStateOrCity(state, city);
             return detail;
         }
+
+        public int AddDetailsToAddressBook(ContactDetails details)
+        {
+            int res = new DataBaseOperation().WriteIntoDataBase(details);
+            return res;
+        }
     }
 }
