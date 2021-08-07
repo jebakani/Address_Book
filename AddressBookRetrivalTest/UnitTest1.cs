@@ -1,7 +1,7 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using AddressBook;
-using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace AddressBookRetrivalTest
 {
@@ -27,7 +27,7 @@ namespace AddressBookRetrivalTest
         public void UpdateDataTest()
         {
             int expected = 1;
-           int actual=operation.updateContact(3,"Stephan",9845625362);
+            int actual = operation.updateContact(3, "Stephan", 9845625362);
             Assert.AreEqual(expected, actual);
         }
         //UC18-Retrival based on date range
@@ -38,6 +38,14 @@ namespace AddressBookRetrivalTest
             DateTime startDate = new DateTime(2017, 01, 01);
             DateTime enddate = new DateTime(2019, 01, 01);
             List<ContactDetails> actual = operation.RetrivingDataBasedOnDate(startDate, enddate);
+            Assert.AreEqual(expected, actual.Count);
+        }
+        //UC19-Retrive the data based on city or state
+        [TestMethod]
+        public void StateCityRetrivalTest()
+        {
+            int expected = 2;
+            List<ContactDetails> actual = operation.RetrivingDataBasedOnStateCity("Tamil Nadu", "chennai");
             Assert.AreEqual(expected, actual.Count);
         }
 

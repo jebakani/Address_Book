@@ -273,5 +273,11 @@ namespace AddressBook
             List<ContactDetails> detail = operation.RetriveBasedOnDate(startDate,endDate);
             return detail;
         }
+        public List<ContactDetails> RetrivingDataBasedOnStateCity(string state,string city)
+        {
+            DataBaseOperation operation = new DataBaseOperation();
+            List<ContactDetails> detail = operation.RetriveBasedOnStateOrCity(state, city);
+            return detail;
+        }
     }
 }
