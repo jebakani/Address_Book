@@ -262,5 +262,10 @@ namespace AddressBook
             List<ContactDetails> detail= operation.ReadFromDataBase();
             return detail;
         }
+        public int updateContact(int id, string firstName, long phoneNumber)
+        {
+            int res = new DataBaseOperation().EditContactDetail(id, firstName, phoneNumber);
+            return res;
+        }
     }
 }
