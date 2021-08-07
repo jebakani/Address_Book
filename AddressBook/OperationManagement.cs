@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    class OperationManagement
+    public class OperationManagement
     {
        
         Dictionary<string, List<ContactDetails>> addressDictionary;
@@ -25,7 +25,8 @@ namespace AddressBook
         public void ReadInput()
         {
             OperationManagement operation = new OperationManagement();
-            FileOperation file = new FileOperation();
+            JSONFileOperation jSONFile = new JSONFileOperation();
+            string jsonFile = @"C:\Users\HP1\source\repos\AddressBook\AddressBook\ContactDetails.json";
             //creating the object for the class address book 
             bool CONTINUE = true;
             string name;
@@ -57,10 +58,11 @@ namespace AddressBook
                 switch (choice)
                 {
                     case 1:
-                        addressDictionary = file.ReadFromJsonFile();
+                        addressDictionary = jSONFile.ReadData(jsonFile);
                         break;
                     case 2:
-                        addressDictionary = file.ReadFromCSVFile();
+                        string csvFile = @"C:\Users\HP1\source\repos\AddressBook\AddressBook\ContactDetai.csv";
+                        addressDictionary = new CSVFileOperation().ReadData(csvFile);
                         break;
                     case 3:
                         //creating the dictionary
@@ -70,7 +72,7 @@ namespace AddressBook
                         //create the object for the address book
                         //pass address book object and name to the dictionary
                         addressDictionary.Add(addBookName, list);
-                        file.WriteIntoJsonFile(addressDictionary);
+                        jSONFile.WriteData(addressDictionary,jsonFile);
                         break;
 
 
@@ -84,7 +86,7 @@ namespace AddressBook
                         {
                             Console.WriteLine(e.Message);
                         }
-                        file.WriteIntoJsonFile(addressDictionary);
+                        jSONFile.WriteData(addressDictionary, jsonFile);
                         break;
 
                     case 5:
@@ -120,7 +122,7 @@ namespace AddressBook
                         {
                             Console.WriteLine("Enter valid input");
                         }
-                        file.WriteIntoJsonFile(addressDictionary);
+                        jSONFile.WriteData(addressDictionary,jsonFile);
                         break;
 
                     case 7:
@@ -136,7 +138,7 @@ namespace AddressBook
                         {
                             Console.WriteLine("Address book is not available");
                         }
-                        file.WriteIntoJsonFile(addressDictionary);
+                        jSONFile.WriteData(addressDictionary, jsonFile);
                         break;
 
                     case 8:
@@ -144,7 +146,7 @@ namespace AddressBook
                         Console.WriteLine("Enter address book name to delete:");
                         string Name = Console.ReadLine();
                         addressDictionary.Remove(Name);
-                        file.WriteIntoJsonFile(addressDictionary);
+                        jSONFile.WriteData(addressDictionary, jsonFile);
                         break;
                     case 9:
                         AddressBookCompute.FindPerson(addressDictionary);
@@ -182,10 +184,9 @@ namespace AddressBook
                         break;
                     case 14:
                         //writing and reading  the data into the file
-                        
-                        file.WriteIntoFile(addressDictionary);
+                        string filepath = @"C:\Users\HP1\source\repos\AddressBook\AddressBook\AddressBook.txt";
+                        new TextFileOperation().WriteData(addressDictionary,filepath);
                         break;
-
                     case 0:
                         CONTINUE = false;
                         break;
@@ -207,22 +208,23 @@ namespace AddressBook
                 }
                 else
                 {
+                    ContactDetails contactDetails = new ContactDetails();
                     Console.WriteLine("Enter first Name");
-                    string firstName = Console.ReadLine();
+                    contactDetails.firstName = Console.ReadLine();
                     Console.WriteLine("Enter Last Name");
-                    string lastName = Console.ReadLine();
+                    contactDetails.lastName = Console.ReadLine();
                     Console.WriteLine("Enter Address");
-                    string address = Console.ReadLine();
+                    contactDetails.address = Console.ReadLine();
                     Console.WriteLine("Enter City");
-                    string city = Console.ReadLine();
+                     contactDetails.city = Console.ReadLine();
                     Console.WriteLine("Enter State");
-                    string state = Console.ReadLine();
+                    contactDetails.state = Console.ReadLine();
                     Console.WriteLine("Enter Zipcode");
-                    string zipCode = Console.ReadLine();
+                    contactDetails.zipCode = Console.ReadLine();
                     Console.WriteLine("Enter Phone Number");
-                    string phoneNumber = Console.ReadLine();
+                    contactDetails.phoneNumber = Console.ReadLine();
                     //passing the details to add contact detail method
-                    addressBook.AddContactDetails(firstName, lastName, address, city, state, zipCode, phoneNumber, stateRecord, cityRecord,list);
+                    addressBook.AddContactDetails( stateRecord, cityRecord,list,contactDetails,contactDetails.firstName,contactDetails.state,contactDetails.city);
                 }
             }
             //catches when the user input the invalid data
@@ -252,6 +254,13 @@ namespace AddressBook
                 Console.WriteLine(e.Message);
                 return default;
             }
+        }
+
+        public List<ContactDetails>  RetrivingDataFromDataBase()
+        {
+            DataBaseOperation operation = new DataBaseOperation();
+            List<ContactDetails> detail= operation.ReadFromDataBase();
+            return detail;
         }
     }
 }
