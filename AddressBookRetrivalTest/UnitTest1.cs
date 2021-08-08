@@ -58,7 +58,7 @@ namespace AddressBookRetrivalTest
              int actual = operation.AddDetailsToAddressBook(contactDetails);
             Assert.AreEqual(expected, actual);
         }
-
+        //UC21-Adding multipleContact to database using thread
         [TestMethod]
         public void AddingMultipleDataToAddtessBook()
         {
@@ -68,6 +68,14 @@ namespace AddressBookRetrivalTest
                                                                          new ContactDetails { personId =13, firstName = "marcus3", lastName = "josh", address = "mgm road", city = "madurai", state = "Tamil Nadu", zipCode = "856423", phoneNumber = "9856234561", emailAddress = "marcys@gmail.com", typeId = 2, addressBookId = 1, addedDate = "2020-06-30" }};
             contactList = operation.AddMultiplecontactToDataBase(contactList);
             Assert.AreEqual(expected, contactList);
+        }
+
+        //retriving data from json server
+        [TestMethod]
+        public void  OnCallingGetAPI_ReturnsContacts()
+        {
+            List<ContactDetails> actual = new AddressBookJSONServer().ReadFromServer();
+            Assert.AreEqual(1, actual.Count);
         }
 
     }
