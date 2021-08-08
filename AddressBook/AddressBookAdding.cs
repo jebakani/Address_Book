@@ -15,8 +15,7 @@ namespace AddressBook
         public List<ContactDetails>   ReadFromDataBase()
         {
 
-            Dictionary<string, List<ContactDetails>> contactDictionary = new Dictionary<string, List<ContactDetails>>();
-            
+            SqlConnection sqlConnection = new SqlConnection(connectionString);
             try
             {
                 sqlConnection.Open();
@@ -207,6 +206,21 @@ namespace AddressBook
                     sqlConnection.Close();
                 }
             }
+        }
+        //UC-21 Adding multiple contact to list using thread
+        public List<ContactDetails> AddingMultipleData(List<ContactDetails> contacts)
+        {
+            contacts.ForEach(contactDetail => {
+                Task thread = new Task(() =>
+                {
+                    Console.WriteLine("Contact begin added"+contactDetail.firstName);
+                    WriteIntoDataBase(contactDetail);
+                    Console.WriteLine("Contact added:"+contactDetail.firstName);
+                });
+                thread.Start();
+            });
+            contacts = ReadFromDataBase();
+            return contacts;
         }
 
     }
