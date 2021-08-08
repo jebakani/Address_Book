@@ -23,6 +23,8 @@ namespace AddressBook
         public string addedDate { get; set; }
         public int typeId { get; set; }
         public int addressBookId { get; set; }
+        //for json server
+        public int id { get; set; }
         //constructor that gets user detail and store it in the current object
 
 
