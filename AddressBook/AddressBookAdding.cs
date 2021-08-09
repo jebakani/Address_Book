@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AddressBook
 {
-    class DataBaseOperation : DatabaseReadWrite
+    class DataBaseOperation : IDatabaseReadWrite
     {
         List<ContactDetails> detail = new List<ContactDetails>();
         public static string connectionString = @"Data Source=(localdb)\ProjectsV13;Initial Catalog=AddressBookService";
