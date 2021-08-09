@@ -24,7 +24,7 @@ namespace AddressBook
     {
         Dictionary<string, List<ContactDetails>> ReadData(string fileName);
     }
-    interface DatabaseReadWrite
+    interface IDatabaseReadWrite
     {
         int WriteIntoDataBase(ContactDetails details);
         List<ContactDetails> ReadFromDataBase();
