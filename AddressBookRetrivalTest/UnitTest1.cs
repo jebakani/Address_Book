@@ -81,9 +81,19 @@ namespace AddressBookRetrivalTest
         [TestMethod]
         public void OnCallingPOSTAPI_AddMethodToServer()
         {
-            List<ContactDetails> contactDetails = new List<ContactDetails> { new ContactDetails { personId = 12, firstName = "marcus", lastName = "josh", address = "mgm road", city = "madurai", state = "Tamil Nadu", zipCode = "856423", phoneNumber = "9856234561", emailAddress = "marcys@gmail.com", typeId = 2, addressBookId = 1, addedDate = "2020-06-30" } };
+            
+            List<ContactDetails> contactDetails = new List<ContactDetails> { new ContactDetails { personId = 2, firstName = "Jessi", lastName = "Arul", address = "K.K.Nagar", city = "Chennai", state = "Tamil Nadu", zipCode = "600007", phoneNumber = "8642536784", emailAddress = "jessiA@gmail.com", typeId = 2, addressBookId = 1, addedDate = "2020-06-30" } };
             new AddressBookJSONServer().AddingMultipleContactToServer(contactDetails);
-           
+        }
+
+        //UC24-Updating the record in json server
+        [TestMethod]
+        public void OnCallingPutAPI_UpdatePhoneNumber()
+        {
+            int expected = 1;
+            ContactDetails contact = new ContactDetails { personId = 2, firstName = "Jessi", lastName = "Arul", address = "K.K.Nagar", city = "Chennai", state = "Tamil Nadu", zipCode = "600007", phoneNumber = "8642536784", emailAddress = "jessiA@gmail.com", typeId = 2, addressBookId = 1, addedDate = "2020-06-30" };
+           int actual= new AddressBookJSONServer().UpdateValueInJsonServer(contact);
+            Assert.AreEqual(expected, actual);
         }
     }
 }
