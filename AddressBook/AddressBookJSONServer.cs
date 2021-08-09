@@ -49,5 +49,14 @@ namespace AddressBook
             res.personId = res.id;
             Console.WriteLine(""+res.personId);
         } 
+        //Adding multiple data to the server
+        public void AddingMultipleContactToServer(List<ContactDetails> contactList)
+        {
+            foreach(var contact in contactList)
+            {
+                WriteIntoJsonServer(contact);
+                new DataBaseOperation().WriteIntoDataBase(contact);
+            }    
+        }
     }
 }

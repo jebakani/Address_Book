@@ -81,8 +81,8 @@ namespace AddressBookRetrivalTest
         [TestMethod]
         public void OnCallingPOSTAPI_AddMethodToServer()
         {
-            ContactDetails contactDetails = new ContactDetails { personId = 12, firstName = "marcus", lastName = "josh", address = "mgm road", city = "madurai", state = "Tamil Nadu", zipCode = "856423", phoneNumber = "9856234561", emailAddress = "marcys@gmail.com", typeId = 2, addressBookId = 1, addedDate = "2020-06-30" };
-           new AddressBookJSONServer().WriteIntoJsonServer(contactDetails);
+            List<ContactDetails> contactDetails = new List<ContactDetails> { new ContactDetails { personId = 12, firstName = "marcus", lastName = "josh", address = "mgm road", city = "madurai", state = "Tamil Nadu", zipCode = "856423", phoneNumber = "9856234561", emailAddress = "marcys@gmail.com", typeId = 2, addressBookId = 1, addedDate = "2020-06-30" } };
+            new AddressBookJSONServer().AddingMultipleContactToServer(contactDetails);
            
         }
     }
