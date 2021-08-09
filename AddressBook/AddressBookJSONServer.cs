@@ -58,7 +58,7 @@ namespace AddressBook
                 new DataBaseOperation().WriteIntoDataBase(contact);
             }    
         }
-
+        //Update the record using put method
         public int UpdateValueInJsonServer(ContactDetails contact)
         {
             int result = 0;
@@ -84,6 +84,14 @@ namespace AddressBook
                result= new DataBaseOperation().EditContactDetail(contact.personId, contact.firstName, Convert.ToInt64(contact.phoneNumber));
             }
             return result;
+        }
+
+        //delete the record from the server
+        public bool DeleteData(int id)
+        {
+            RestRequest request = new RestRequest("/Contacts/" + id, Method.DELETE);
+            IRestResponse response = client.Execute(request);
+            return (response.IsSuccessful);
         }
 
        

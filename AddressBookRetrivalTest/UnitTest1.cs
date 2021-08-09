@@ -96,5 +96,14 @@ namespace AddressBookRetrivalTest
             Assert.AreEqual(expected, actual);
         }
 
+        //UC25- delete record from the json server
+        [TestMethod]
+        public void OnCallingDeleteAPI_DeletetheRecord()
+        {
+            bool expected = true;
+            bool actual = new AddressBookJSONServer().DeleteData(2);
+            Assert.AreEqual(expected, actual);
+        }
+
     }
 }
